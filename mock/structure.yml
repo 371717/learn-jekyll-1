@@ -1,0 +1,11 @@
+- _posts:
+  - 2017-03-13-welcome-to-jekyll.md
+- _includes:
+  - sidebar.md
+- _layouts:
+  - default.html
+  - home.html
+  - post.html
+- _config.yml
+- about.md
+- index.md
