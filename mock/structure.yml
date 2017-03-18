@@ -1,3 +1,6 @@
+- _data:
+  - beatles.yml
+  
 - _posts:
   - 2017-03-13-welcome-to-jekyll.md
 - _includes:

@@ -9,6 +9,7 @@ var LearnJekyll = function() {
   this.pages = {};
   this.urls = {};
   this.files = {};
+  this.data = {};
   this.config = {};
   
   this.init = function() {
@@ -197,6 +198,15 @@ var LearnJekyllLoader = function(app) {
       } else if (path.match(/^_includes/)) {
         this.app.includes[path.substring('_includes/'.length).replace(/\.[a-z0-9]+$/, '')] = path;
         this.app.includes[path.substring('_includes/'.length)] = path;
+        return;
+      } else if (path.match(/^_data/)) {
+        if (path.match(/.json$/)) {
+          var name = path.substring('_data/'.length).replace('.json', '');
+          this.app.data[name] = JSON.parse(this.files[path]);
+        } else if (path.match(/.yml$/)) {
+          var name = path.substring('_data/'.length).replace('.yml', '');
+          this.app.data[name] = jsyaml.load(this.files[path]["__content"]); 
+        }
         return;
       } else if (path.match(/_config\.yml/)) {
         return;
