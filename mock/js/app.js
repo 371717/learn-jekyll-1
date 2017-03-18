@@ -6,6 +6,7 @@ var LearnJekyll = function() {
   this.layouts = {};
   this.includes = {}
   this.posts = {};
+  this.pages = {};
   this.urls = {};
   this.files = {};
   this.config = {};
@@ -26,34 +27,110 @@ var LearnJekyll = function() {
     var page = this.files[this.urls[url]];
     var render = this.renderTemplate(this.urls[url], page);
     document.querySelector('html').innerHTML = render;
-    //document.querySelector('head').innerHTML += '<base href="' + app.config.baseurl + '">';
+  }
+  
+  this.initConfig = function() {
+    var tags = {},
+      posts = [],
+      pages = [];
+    
+    for (var post in this.posts) {
+      posts.push(this.files[this.posts[post]]);
+      posts[posts.length - 1].path = this.posts[post];
+      posts[posts.length - 1].slug = post;
+      posts[posts.length - 1].url = '?' + post;
+      posts[posts.length - 1].id = posts.length - 1;
+      
+      for (var tagIndex in posts[posts.length - 1].tags) {
+        var tag = posts[posts.length - 1].tags[tagIndex];
+        
+        if (typeof tag !== 'string') {
+          continue;
+        }
+        
+        if (!tags[tag]) {
+          tags[tag] = [];
+        }
+        
+        tags[tag].push(posts[posts.length - 1]);
+      }
+    }
+    
+    console.log(posts);
+    for (var index in posts) {
+      if (index > -1) {
+        posts[index].prev = posts[parseInt(index) - 1] ? posts[parseInt(index) - 1] : null;
+        posts[index].next = posts[parseInt(index) + 1] ? posts[parseInt(index) + 1] : null;
+      }
+    }
+    
+    
+    for (var page in this.pages) {
+      pages.push(this.files[this.pages[page]]);
+      pages[pages.length - 1].path = this.pages[post];
+      pages[pages.length - 1].slug = page;
+      pages[pages.length - 1].url = '?' + page;
+      pages[pages.length - 1].id = pages.length - 1;
+    }
+    
+    for (var index in pages) {
+      if (index > -1) {
+        pages[index].prev = pages[parseInt(index) - 1] ? pages[parseInt(index) - 1] : null;
+        pages[index].next = pages[parseInt(index) + 1] ? pages[parseInt(index) + 1] : null;
+      }
+    }
+    
+    var config = { 
+      site: { 
+        time: new Date(), 
+        pages: pages,
+        posts: posts, 
+        related_posts: null,
+        static_files: null,
+        html_pages: null,
+        collections: null,
+        data: this.data,
+        documents: null,
+        categories: {},
+        tags: tags
+      },
+      page: {
+        content: '',
+        title: '',
+        excerpt: '',
+        url: '',
+        date: '',
+        id: '',
+        categories: '',
+        tags: '',
+        path: '',
+        next: '',
+        previous: ''
+      }
+    };
+    
+    for (var prop in this.config) {
+      config.site[prop] = this.config[prop];
+    }
+    
+    return config;
   }
   
   this.renderTemplate = function(filename, page, config, content) {
-    console.log(page);
-    
     if (config == null) {
-      var posts = [];
-      for (var post in this.posts) {
-        posts.push(this.files[this.posts[post]]);
-        posts[posts.length - 1].slug = post;
-      }
-      
-      var config = { site: { posts: posts }, page: {}};
-      
-      for (var prop in this.config) {
-        config.site[prop] = this.config[prop];
-      }
+      config = this.initConfig();
     }
     
     for (var prop in page) {
       config.page[prop] = page[prop];
     }
     
-    
     var content = filename.match(/md|markdown$/) ? marked(page["__content"]) : page["__content"];
     var tpl = Liquid.parse(content);
     var render = tpl.render(config);
+    
+    console.log(page);
+    console.log(config);
     
     if (page.layout) {
       return this.renderLayout(page.layout, config, render);
@@ -63,6 +140,10 @@ var LearnJekyll = function() {
   }
   
   this.renderLayout = function(layout, config, content) {
+    for (var prop in this.config) {
+      config.site[prop] = this.config[prop];
+    }
+    
     var page = this.files[this.layouts[layout]];
     config.content = content;
     return this.renderTemplate(this.layouts[layout], page, config, content);
@@ -119,6 +200,9 @@ var LearnJekyllLoader = function(app) {
         return;
       } else if (path.match(/_config\.yml/)) {
         return;
+      } else if (path.match(/\.(md|html)$/)) {
+        this.app.pages[path.replace(/\.[a-z0-9]+$/, '')] = path;
+        this.app.urls[path.replace(/\.[a-z0-9]+$/, '')] = path;
       } else if (!path.match(/\//)) {
         this.app.urls[path.replace(/\.[a-z0-9]+$/, '')] = path;
       }
