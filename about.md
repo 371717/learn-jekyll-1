@@ -1,15 +1,10 @@
 ---
 layout: page
 title: About
-permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+This is a minimal [Learn-Jekyll.js](https://github.com/jan-martinek/learn-jekyll) website.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jekyll" %} /
-[minima](https://github.com/jekyll/minima)
+It is not meant to replace Jekyll — it just mimics some of its functionality. It might be useful for those who do not want to install Ruby & Jekyll on their computer.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+To use it, you need to keep a two-level file structure and describe it in `mock/structure.yml`. Learn more about it in its [Github repo](https://github.com/jan-martinek/learn-jekyll).
