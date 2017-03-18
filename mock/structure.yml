@@ -3,6 +3,8 @@
   
 - _posts:
   - 2017-03-13-welcome-to-jekyll.md
+  - 2017-03-17-another-post.md
+  
 - _includes:
   - menu.md
   
