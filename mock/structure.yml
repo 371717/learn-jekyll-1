@@ -4,7 +4,8 @@
 - _posts:
   - 2017-03-13-welcome-to-jekyll.md
 - _includes:
-  - sidebar.md
+  - menu.md
+  
 - _layouts:
   - default.html
   - page.html
