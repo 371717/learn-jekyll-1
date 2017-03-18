@@ -5,8 +5,32 @@ JS mockup engine for learning how to use Jekyll basics.
 **This is not a replacement for Jekyll** — it just mocks up some of its behaviors:
 
 - Liquid templating works (`include` and `link` tags work).
-- Markdown is rendered in `*.md` files.
-- `site` and `page` variables work in templates.
+- Markdown is rendered from `*.md` files.
+- `site` variable works in templates:
+  - `site.time` = new Date();
+  - `site.pages` = all pages
+  - `site.posts` = all posts
+  - `site.related_posts` **unsupported**
+  - `site.static_files` **unsupported**
+  - `site.html_pages` **unsupported**
+  - `site.collections` **unsupported** (planned)
+  - `site.data` = all files in `_data` folder (supports YAML and JSON)
+  - `site.documents` **unsupported** (planned)
+  - `site.categories.CATEGORY` **unsupported**
+  - `site.tags.TAG` = all posts with tag TAG (specified in front matter)
+- `page` variable works in templates:
+  - `page.content` = page content
+  - `page.title` = set in front matter
+  - `page.excerpt` = set in front matter
+  - `page.url` = automatically set
+  - `page.date`  = set in front matter (or filename of a post)
+  - `page.id` = set for posts and pages, both start at 0
+  - `page.categories` **unsupported**
+  - `page.tags` = set as an array in front matter
+  - `page.path` = path to file
+  - `page.next` = next post, last post has `null` 
+  - `page.previous` = next post, first post has `null` 
+
 
 ## Usage
 
