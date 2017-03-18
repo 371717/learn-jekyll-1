@@ -22,7 +22,7 @@ Liquid.Template.registerTag( 'link', Liquid.Tag.extend({
     this.link = slug ? slug : 'Error: file not found.';
   },
   render: function(context) {
-    return '?' + this.link;
+    return '/mock/?' + this.link;
   }
 }));
 

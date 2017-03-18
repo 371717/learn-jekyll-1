@@ -39,7 +39,7 @@ var LearnJekyll = function() {
       posts.push(this.files[this.posts[post]]);
       posts[posts.length - 1].path = this.posts[post];
       posts[posts.length - 1].slug = post;
-      posts[posts.length - 1].url = '?' + post;
+      posts[posts.length - 1].url = '/mock/?' + post;
       posts[posts.length - 1].id = posts.length - 1;
       
       for (var tagIndex in posts[posts.length - 1].tags) {
@@ -70,7 +70,7 @@ var LearnJekyll = function() {
       pages.push(this.files[this.pages[page]]);
       pages[pages.length - 1].path = this.pages[post];
       pages[pages.length - 1].slug = page;
-      pages[pages.length - 1].url = '?' + page;
+      pages[pages.length - 1].url = '/mock/?' + page;
       pages[pages.length - 1].id = pages.length - 1;
     }
     
