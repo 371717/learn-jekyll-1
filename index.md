@@ -7,7 +7,7 @@ title: Home
 
 This are the contents of the Jekyll front page.
 
-## Something to read
+## Something to read: Sonnet LXVI.
 
 > *Tired with all these, for restful death I cry,  
 > As to behold desert a beggar born,  
@@ -24,7 +24,7 @@ This are the contents of the Jekyll front page.
 > Tired with all these, from these would I be gone,  
 > Save that, to die, I leave my love alone.*
 > 
-> (Sonnet LXVI., William Shakespeare)
+> William Shakespeare
 
 ## Posts
 
