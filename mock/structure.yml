@@ -4,8 +4,9 @@
   - sidebar.md
 - _layouts:
   - default.html
-  - home.html
+  - page.html
   - post.html
+  
 - _config.yml
 - about.md
 - index.md

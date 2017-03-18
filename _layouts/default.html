@@ -7,7 +7,18 @@
 	
 </head>
 <body>
-	<h1>{{ site.title }}</h1>
-	{{ content }}
+	<div class="wrapper">
+		<header>
+			<h1><a href="{% link index.md %}">{{ site.title }}</a></h1>
+		</header>
+		
+		<section class="content">
+			{{ content }}
+		</section>
+		
+		<nav>
+			{% include menu.md %}
+		</nav>
+	</div>
 </body>
 </html>
