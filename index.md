@@ -33,7 +33,7 @@ See the posts:
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>
@@ -45,7 +45,7 @@ And even normal pages:
 <ul>
   {% for page in site.pages %}
     <li>
-      <a href="{{ page.url }}">{{ page.title }}</a>
+      <a href="{{ site.baseurl }}{{ page.url }}">{{ page.title }}</a>
     </li>
   {% endfor %}
 </ul>

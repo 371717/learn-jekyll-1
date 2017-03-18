@@ -18,7 +18,7 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 
 ## What's next?
 
-See [another post]({{ page.next.url }}) or head back to [homepage]({% link index.md %}). (Check this paragraph to see the magic behind the links.)
+See [another post]({{ site.baseurl }}{{ page.next.url }}) or head back to [homepage]({{ site.baseurl }}{% link index.md %}). (Check this paragraph to see the magic behind the links.)
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
